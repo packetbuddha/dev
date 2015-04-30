@@ -1,12 +1,13 @@
 #!/usr/bin/env python
 
-# import std lib
-import pprint
-
 # import local
 from pynet_dev import devices
 from snmp_helper import snmp_get_oid, snmp_extract
 
+"""
+Query a Cisco 881 router and determine if the running
+config has changes not yet saved to the startup config.
+"""
 
 oid_run_last_change = '1.3.6.1.4.1.9.9.43.1.1.1.0'
 oid_run_last_save = '1.3.6.1.4.1.9.9.43.1.1.2.0'
@@ -32,6 +33,9 @@ print '...the running config was last changed {} minutes ago.'.format(
 print '...the startup config was last saved {} minutes ago.'.format(
     int(current_start_last_save)/6000)
 
+# Since the router increments the ccmHistoryRunningLastChanged OID during boot,
+# we are not able to determine if the ccmHistoryRunningLastChanged value is due
+# to user action or not.
 if current_start_last_save == 0:
     print 'The startup config has not been saved since the last reboot.' \
         'The running config may contain unsaved changes.' 
