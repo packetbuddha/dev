@@ -24,14 +24,18 @@ start_last_save = snmp_get_oid((host, snmp_comm, snmp_port),
 current_run_last_change = snmp_extract(run_last_change)
 current_start_last_save = snmp_extract(start_last_save)
 
-print 'The running config was last changed {} minutes ago.'.format(
+# uncomment to simulate router reboot
+#current_start_last_save = 0
+ 
+print '...the running config was last changed {} minutes ago.'.format(
     int(current_run_last_change)/6000)
-print 'The startup config was last changed {} minutes ago.'.format(
+print '...the startup config was last saved {} minutes ago.'.format(
     int(current_start_last_save)/6000)
 
 if current_start_last_save == 0:
-    print 'The startup config has not been saved since the last reboot.' 
-if current_run_last_change > current_start_last_save:
+    print 'The startup config has not been saved since the last reboot.' \
+        'The running config may contain unsaved changes.' 
+elif current_run_last_change > current_start_last_save:
     print 'The running config contains unsaved changes.'
 else:
     print 'The starup config is current.'
