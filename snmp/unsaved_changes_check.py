@@ -5,6 +5,8 @@ from pynet_dev import devices
 from snmp_helper import snmp_get_oid, snmp_extract
 
 """
+PyNet: Week1, Challenge 3
+
 Query a Cisco 881 router and determine if the running
 config has changes not yet saved to the startup config.
 """
