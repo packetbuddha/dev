@@ -1,0 +1,2 @@
+[LOCAL]
+localhost   ansible_connection=local ansible_ssh_user=tewks

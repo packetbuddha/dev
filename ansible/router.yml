@@ -1,0 +1,8 @@
+---
+- hosts: localhost
+  vars:
+    hostname: pynet-rtr1
+  tasks:
+    - name: Generate configuration file
+      template: src=/Users/tewks/projects/pynet/repo/ansible/router.j2
+                dest=/Users/tewks/projects/pynet/repo/ansible/router.txt
